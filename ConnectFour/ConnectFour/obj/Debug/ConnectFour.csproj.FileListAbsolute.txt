@@ -8,3 +8,13 @@ C:\Users\andre\Documents\Workspace\VisualStudio\ConnectFour\ConnectFour\bin\Debu
 C:\Users\andre\Documents\Workspace\VisualStudio\ConnectFour\ConnectFour\obj\Debug\ConnectFour.csproj.CopyComplete
 C:\Users\andre\Documents\Workspace\VisualStudio\ConnectFour\ConnectFour\obj\Debug\ConnectFour.exe
 C:\Users\andre\Documents\Workspace\VisualStudio\ConnectFour\ConnectFour\obj\Debug\ConnectFour.pdb
+C:\Users\andre\Documents\Workspace\VisualStudio\AIPractice\ConnectFour\ConnectFour\bin\Debug\ConnectFour.exe.config
+C:\Users\andre\Documents\Workspace\VisualStudio\AIPractice\ConnectFour\ConnectFour\bin\Debug\ConnectFour.exe
+C:\Users\andre\Documents\Workspace\VisualStudio\AIPractice\ConnectFour\ConnectFour\bin\Debug\ConnectFour.pdb
+C:\Users\andre\Documents\Workspace\VisualStudio\AIPractice\ConnectFour\ConnectFour\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Extension.dll
+C:\Users\andre\Documents\Workspace\VisualStudio\AIPractice\ConnectFour\ConnectFour\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Users\andre\Documents\Workspace\VisualStudio\AIPractice\ConnectFour\ConnectFour\obj\Debug\ConnectFour.csprojAssemblyReference.cache
+C:\Users\andre\Documents\Workspace\VisualStudio\AIPractice\ConnectFour\ConnectFour\obj\Debug\ConnectFour.csproj.CoreCompileInputs.cache
+C:\Users\andre\Documents\Workspace\VisualStudio\AIPractice\ConnectFour\ConnectFour\obj\Debug\ConnectFour.csproj.CopyComplete
+C:\Users\andre\Documents\Workspace\VisualStudio\AIPractice\ConnectFour\ConnectFour\obj\Debug\ConnectFour.exe
+C:\Users\andre\Documents\Workspace\VisualStudio\AIPractice\ConnectFour\ConnectFour\obj\Debug\ConnectFour.pdb
