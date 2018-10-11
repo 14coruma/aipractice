@@ -14,11 +14,14 @@ namespace ConnectFour
     {
         public List<List<int>> myPieces;
         public int myPlayersTurn;
+        public int myWinner = 0;
+        public bool myGameOver;
          
         /// Empty constructor - Creates empy board
         public Board()
         {
             myPlayersTurn = 1;
+            myGameOver = false;
             myPieces = new List<List<int>>();
             for (int row = 0; row < 6; row++)
             {
@@ -30,14 +33,60 @@ namespace ConnectFour
             }
         }
 
-  
         /// Constructor from 2D list
         public Board(List<List<int>> pieces)
         {
             myPlayersTurn = 1;
+            myGameOver = false;
             myPieces = new List<List<int>>(pieces);
         }
 
+        /// Checks if a move is legal
+        public bool legalMove(int pos)
+        {
+            if (myPieces[0][pos] > 0)
+                return false;
+            else
+                return true;
+        }
+
+        /// Check for a winning combination, returning player who one or zero otherwise
+        public int checkGameOver()
+        {
+            return 0; // TODO: Fix
+        }
+
+        /// Makes a move 
+        /// If illegal, ends game and returns winner
+        /// If results in a winning combo, ends game and returns winner
+        public int makeMove(int pos)
+        {
+            if (!legalMove(pos)) // Check if legal move
+            {
+                myGameOver = true;
+                myWinner = (myPlayersTurn % 2) + 1;
+                return myWinner;
+            }
+
+            // Drop piece into position
+            int row = 0;
+            while (row < 5 && myPieces[row+1][pos] == 0)
+            {
+                row++;
+            }
+            myPieces[row][pos] = myPlayersTurn;
+
+            if (checkGameOver() != 0) // Game over?
+            {
+                myGameOver = true;
+                myWinner = myPlayersTurn;
+                return myPlayersTurn;
+            }
+
+            myPlayersTurn = (myPlayersTurn % 2) + 1;
+            return 0;
+        } 
+        
         /// Board to nice string
         public override string ToString()
         {
@@ -95,12 +144,25 @@ namespace ConnectFour
             Console.WriteLine(" -- Passed!");
 
             Console.WriteLine("\t* Board.ToString()");
-            Console.WriteLine(b2.ToString());
+            Console.Write(b2.ToString());
             Console.WriteLine("\t  If it looks good... -- Passed!");
 
-            //Console.Write("\t* Board.");
-            
-            //Console.WriteLine(" -- Passed!");
+            Console.Write("\t* Board.legalMove(int pos)");
+            Debug.Assert(b1.legalMove(3));
+            Debug.Assert(b2.legalMove(1));
+            Debug.Assert(!b2.legalMove(0));
+            Console.WriteLine(" -- Passed!");
+
+            Console.Write("\t* Board.makeMove(int pos)");
+            b2.makeMove(1);
+            Debug.Assert(b2.myPieces[5][1] == 1);
+            b2.makeMove(1);
+            Debug.Assert(b2.myPieces[4][1] == 2);
+            Debug.Assert(b2.makeMove(1) == 0);
+            Debug.Assert(b2.myPieces[3][1] == 1);
+            Debug.Assert(b2.makeMove(0) == 1);
+            Debug.Assert(b2.myGameOver);
+            Console.WriteLine(" -- Passed!");
         }
     }
 }
