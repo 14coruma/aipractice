@@ -13,6 +13,8 @@ namespace ConnectFour
             BoardTests b = new BoardTests();
             b.TestMethod1();
 
+            Console.WriteLine("All tests passed!");
+
             Console.ReadLine();
         }
     }
