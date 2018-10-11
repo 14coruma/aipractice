@@ -10,11 +10,17 @@ namespace ConnectFour
     {
         static void Main(string[] args)
         {
-            BoardTests b = new BoardTests();
-            b.TestMethod1();
+            Board b = new Board();
+            while (!b.myGameOver)
+            {
+                Console.Write(b);
+                Console.Write("Player " + b.myPlayersTurn + "'s move: ");
+                int move = -1;
+                Int32.TryParse(Console.ReadLine(), out move);
+                b.makeMove(move);
+            }
 
-            Console.WriteLine("All tests passed!");
-
+            Console.WriteLine("Player " + b.myWinner + " won!");
             Console.ReadLine();
         }
     }
