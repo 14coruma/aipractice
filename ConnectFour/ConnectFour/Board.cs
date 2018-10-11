@@ -53,7 +53,31 @@ namespace ConnectFour
         /// Check for a winning combination, returning player who one or zero otherwise
         public int checkGameOver()
         {
-            return 0; // TODO: Fix
+            // Horizontal
+            for (int row = 0; row < 6; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    int player = myPieces[row][col];
+                    if (player != 0 && player == myPieces[row][col+1] && player == myPieces[row][col+2] && player == myPieces[row][col+3])
+                        return player;
+                }
+            }
+
+            // Vertical
+            for (int col = 0; col < 7; col++)
+            {
+                for (int row = 0; row < 3; row++)
+                {
+                    int player = myPieces[row][col];
+                    if (player != 0 &&  player == myPieces[row + 1][col] && player == myPieces[row + 2][col] && player == myPieces[row + 3][col])
+                        return player;
+                }
+            }
+
+            // TODO: Diagonals
+
+            return 0;
         }
 
         /// Makes a move 
@@ -144,7 +168,7 @@ namespace ConnectFour
             Console.WriteLine(" -- Passed!");
 
             Console.WriteLine("\t* Board.ToString()");
-            Console.Write(b2.ToString());
+            Console.Write(b2);
             Console.WriteLine("\t  If it looks good... -- Passed!");
 
             Console.Write("\t* Board.legalMove(int pos)");
@@ -162,6 +186,27 @@ namespace ConnectFour
             Debug.Assert(b2.myPieces[3][1] == 1);
             Debug.Assert(b2.makeMove(0) == 1);
             Debug.Assert(b2.myGameOver);
+            Console.WriteLine(" -- Passed!");
+
+            Console.Write("\t* Board.checkGameOver()");
+            Debug.Assert(b1.checkGameOver() == 0);
+            for (var i = 0; i < 3; i++)
+            {
+                b1.makeMove(0);
+                b1.makeMove(6);
+            }
+            Debug.Assert(b1.checkGameOver() == 0);
+            b1.makeMove(0);
+            Debug.Assert(b1.checkGameOver() == 1); // Vertical win
+            Board b3 = new Board();
+            for (var i = 0; i < 3; i++)
+            {
+                b3.makeMove(i);
+                b3.makeMove(6-i);
+            }
+            Debug.Assert(b3.checkGameOver() == 0);
+            Debug.Assert(b3.makeMove(0) == 0);
+            Debug.Assert(b3.makeMove(3) == 2); // Horizontal win
             Console.WriteLine(" -- Passed!");
         }
     }
