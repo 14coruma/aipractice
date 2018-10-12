@@ -92,7 +92,27 @@ namespace ConnectFour
                 }
             }
 
-            // TODO: Diagonals
+            // Diagonals (rising)
+            for (int row = 3; row < 6; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    int player = myPieces[row][col];
+                    if (player != 0 &&  player == myPieces[row - 1][col + 1] && player == myPieces[row - 2][col + 2] && player == myPieces[row - 3][col + 3])
+                        return player;
+                }
+            }            
+            
+            // Diagonals (falling)
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    int player = myPieces[row][col];
+                    if (player != 0 &&  player == myPieces[row + 1][col + 1] && player == myPieces[row + 2][col + 2] && player == myPieces[row + 3][col + 3])
+                        return player;
+                }
+            }            
 
             return 0;
         }
