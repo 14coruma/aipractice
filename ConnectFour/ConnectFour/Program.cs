@@ -24,7 +24,6 @@ namespace ConnectFour
                     break;
 
                 Console.Write(b);
-                Console.WriteLine("Bot's move: ");
                 b.makeMove(bot.getMove(b));
             }
 
