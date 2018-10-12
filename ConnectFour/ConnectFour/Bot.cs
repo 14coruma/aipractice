@@ -23,7 +23,7 @@ namespace ConnectFour
             int lastMove = -1;
             int move = -1;
             Board board = new Board(b);
-            while (stopwatch.ElapsedMilliseconds < 2000)
+            while (stopwatch.ElapsedMilliseconds < 2000 && depth <= 100)
             {
                 lastMove = move;
                 move = alphabeta(board, depth, int.MinValue, int.MaxValue).Item1;
@@ -50,7 +50,7 @@ namespace ConnectFour
                 val = int.MinValue;
                 for (int col = 0; col < 7; col++)
                 {
-                    if (!board.legalMove(col))
+                    if (!board.legalMove(col) || stopwatch.ElapsedMilliseconds > 2000 - 1)
                         continue;
                     Board tempBoard = new Board(board);
                     tempBoard.makeMove(col);
@@ -69,7 +69,7 @@ namespace ConnectFour
                 val = int.MaxValue;
                 for (int col = 0; col < 7; col++)
                 {
-                    if (!board.legalMove(col))
+                    if (!board.legalMove(col) || stopwatch.ElapsedMilliseconds > 2000 - 1)
                         continue;
                     Board tempBoard = new Board(board);
                     tempBoard.makeMove(col);
@@ -91,10 +91,8 @@ namespace ConnectFour
         public int evaluate(Board board)
         {
             // TODO: Make this better
-            if (board.myWinner == 1)
-                return 10;
-            else if (board.myWinner == 2)
-                return -10;
+            if (board.myWinner != 0)
+                return (board.myWinner * 2 - 3) * -1;
             else
                 return 0;
         }

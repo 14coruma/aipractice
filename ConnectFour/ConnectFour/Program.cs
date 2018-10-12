@@ -16,9 +16,12 @@ namespace ConnectFour
             while (!b.myGameOver)
             {
                 Console.Write(b);
-                Console.Write("Player " + b.myPlayersTurn + "'s move: ");
+                Console.WriteLine("Player " + b.myPlayersTurn + "'s move: ");
                 int move = -1;
                 Int32.TryParse(Console.ReadLine(), out move);
+                //Random r = new Random();
+                //while (!b.legalMove(move))
+                //    move = r.Next(0, 7);
                 b.makeMove(move);
                 if (b.myGameOver)
                     break;
