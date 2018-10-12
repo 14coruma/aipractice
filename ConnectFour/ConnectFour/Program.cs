@@ -11,6 +11,8 @@ namespace ConnectFour
         static void Main(string[] args)
         {
             Board b = new Board();
+            Bot bot = new Bot();
+
             while (!b.myGameOver)
             {
                 Console.Write(b);
@@ -18,6 +20,11 @@ namespace ConnectFour
                 int move = -1;
                 Int32.TryParse(Console.ReadLine(), out move);
                 b.makeMove(move);
+                if (b.myGameOver)
+                    break;
+
+                Console.Write(b);
+                b.makeMove(bot.getMove(b));
             }
 
             Console.WriteLine("Player " + b.myWinner + " won!");

@@ -41,10 +41,27 @@ namespace ConnectFour
             myPieces = new List<List<int>>(pieces);
         }
 
+        /// Copy constructor
+        public Board(Board b)
+        {
+            myPlayersTurn = b.myPlayersTurn;
+            myGameOver = b.myGameOver;
+            myWinner = b.myWinner;
+            myPieces = new List<List<int>>();
+            for (int row = 0; row < 6; row++)
+            {
+                myPieces.Add(new List<int>());
+                for (int col = 0; col < 7; col++)
+                {
+                    myPieces[row].Add(b.myPieces[row][col]);
+                }
+            }
+        }
+
         /// Checks if a move is legal
         public bool legalMove(int pos)
         {
-            if (myPieces[0][pos] > 0)
+            if (pos < 0 || pos > 6 || myPieces[0][pos] > 0)
                 return false;
             else
                 return true;
