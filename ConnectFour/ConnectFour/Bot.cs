@@ -39,7 +39,7 @@ namespace ConnectFour
         /// Alpha-beta algorithm
         public Tuple<int, int> alphabeta(Board board, int depth, int a, int b)
         {
-            int move = -1;
+            int bestMove = -1;
             int val;
             int newVal;
 
@@ -48,17 +48,17 @@ namespace ConnectFour
             if (board.myPlayersTurn == 1) // P1 is maximizing player
             {
                 val = int.MinValue;
-                for (int col = 0; col < 7; col++)
+                foreach (int move in board.moveSpace())
                 {
-                    if (!board.legalMove(col) || stopwatch.ElapsedMilliseconds > 2000 - 1)
-                        continue;
+                    if (stopwatch.ElapsedMilliseconds > 2000 - 1)
+                        break;
                     Board tempBoard = new Board(board);
-                    tempBoard.makeMove(col);
+                    tempBoard.makeMove(move);
                     newVal = alphabeta(tempBoard, depth - 1, a, b).Item2;
                     if (newVal > val)
                     {
                         val = newVal;
-                        move = col;
+                        bestMove = move;
                     }
                     a = Math.Max(a, val);
                     if (a >= b)
@@ -67,24 +67,24 @@ namespace ConnectFour
             } else // P2 is minimizing player
             {
                 val = int.MaxValue;
-                for (int col = 0; col < 7; col++)
+                foreach (int move in board.moveSpace())
                 {
-                    if (!board.legalMove(col) || stopwatch.ElapsedMilliseconds > 2000 - 1)
-                        continue;
+                    if (stopwatch.ElapsedMilliseconds > 2000 - 1)
+                        break;
                     Board tempBoard = new Board(board);
-                    tempBoard.makeMove(col);
+                    tempBoard.makeMove(move);
                     newVal = alphabeta(tempBoard, depth - 1, a, b).Item2;
                     if (newVal < val)
                     {
                         val = newVal;
-                        move = col;
+                        bestMove = move;
                     }
                     b = Math.Min(b, val);
                     if (a >= b)
                         break;
                 }
             }
-            return Tuple.Create(move, val);
+            return Tuple.Create(bestMove, val);
         }
 
         /// Evaluation function
