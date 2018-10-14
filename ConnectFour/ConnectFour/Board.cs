@@ -67,6 +67,18 @@ namespace ConnectFour
                 return true;
         }
 
+        /// Returns a List of all possible moves
+        public List<int> moveSpace()
+        {
+            List<int> moves = new List<int>();
+            for (int col = 0; col < 7; col++)
+            {
+                if (legalMove(col))
+                    moves.Add(col);
+            }
+            return moves;
+        }
+
         /// Check for a winning combination, returning player who one or zero otherwise
         public int checkGameOver()
         {
@@ -244,6 +256,16 @@ namespace ConnectFour
             Debug.Assert(b3.checkGameOver() == 0);
             Debug.Assert(b3.makeMove(0) == 0);
             Debug.Assert(b3.makeMove(3) == 2); // Horizontal win
+            Console.WriteLine(" -- Passed!");
+
+            Console.Write("\t* Board.moveSpace()");
+            Board b4 = new Board();
+            Debug.Assert(b4.moveSpace().Count == 7);
+            Debug.Assert(b4.moveSpace()[6] == 6);
+            for (int i = 0; i < 6; i++)
+                b4.makeMove(1);
+            Debug.Assert(b4.moveSpace().Count == 6);
+            Debug.Assert(b4.moveSpace()[5] == 6);
             Console.WriteLine(" -- Passed!");
         }
     }
